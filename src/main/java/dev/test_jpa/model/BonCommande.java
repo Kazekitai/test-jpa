@@ -1,6 +1,7 @@
 package dev.test_jpa.model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,8 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import dev.test_jpa.utils.StringUtils;
 import dev.test_jpa.utils.ToString;
 
@@ -36,9 +35,8 @@ public class BonCommande {
 	private int numero;
 
 	@ToString(separator = " - Délai: ")
-	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATE_CMDE")
-	private java.util.Date dateCmde;
+	private LocalDateTime dateCmde;
 
 	@ToString(separator = " jours - Articles: ")
 	@Column(name = "DELAI")
@@ -66,7 +64,7 @@ public class BonCommande {
 	 * Default constructor
 	 */
 	public BonCommande() {
-
+		articles = new HashSet<Article>();
 	}
 
 	
@@ -113,15 +111,15 @@ public class BonCommande {
 	/**
 	 * @return the dateCmde
 	 */
-	public Date getDateCmde() {
-		return (Date) dateCmde;
+	public LocalDateTime getDateCmde() {
+		return (LocalDateTime) dateCmde;
 	}
 
 	/**
 	 * @param dateCmde
 	 *            the dateCmde to set
 	 */
-	public void setDateCmde(Date dateCmde) {
+	public void setDateCmde(LocalDateTime dateCmde) {
 		this.dateCmde = dateCmde;
 	}
 

@@ -88,6 +88,16 @@ public class TestJPA {
 			fournisseur.getCommandes().stream().forEach(c -> LOG.trace(c.toString()));
 		}
 		
+		/* Extraction d'un bon de commande et tous ses articles associés */
+		LOG.trace(" \n /* Extraction d'un bon de commande et tous ses articles associés */");
+		TypedQuery<BonCommande> query8 = entityManager.createQuery("select b from BonCommande b where b.id=:id", BonCommande.class);
+		query8.setParameter("id", 8);
+		List<BonCommande> commandes1 = query8.getResultList();
+		if (!commandes1.isEmpty()) {
+			BonCommande bon = commandes1.get(0);
+			 LOG.trace(bon.toString());
+		}
+		
 		entityManager.close();
 		entityManagerFactory.close();
 		
