@@ -2,7 +2,7 @@ package dev.test_jpa.banque.entite;
 
 import javax.persistence.Embeddable;
 
-
+import dev.test_jpa.utils.StringUtils;
 import dev.test_jpa.utils.ToString;
 
 /**
@@ -15,19 +15,34 @@ import dev.test_jpa.utils.ToString;
 public class Adresse {
 	
 	/* ATTRIBUTES */
-	@ToString(separator = " - Numéro: ")
+	/**
+	 * the identification
+	 */
+	
 	private int idAdress;
 	
-	@ToString(separator = " - Rue: ")
+	/**
+	 * The street number
+	 */
+	@ToString(separator = " ")
 	private int numero;
 	
-	@ToString(separator = " - Code postal: ")
+	/**
+	 * The street name
+	 */
+	@ToString(separator = " ")
 	private String rue;
 	
-	@ToString(separator = " - Ville: ")
+	/**
+	 * The zip-code
+	 */
+	@ToString(separator = " ")
 	private int codePostal;
 	
-	@ToString(separator = " - Client: ")
+	/**
+	 * The town
+	 */
+	@ToString
 	private String ville;
 
 
@@ -38,7 +53,14 @@ public class Adresse {
 	 */
 	public Adresse() {
 	}
-
+	
+	/* METHODS */
+	/**
+	 * Method to return String value of article object
+	 */
+	public String toString() {
+		return StringUtils.getStringValue(this);
+	}
 
 	/* GETTERS AND SETTERS */
 

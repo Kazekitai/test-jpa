@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import dev.test_jpa.utils.StringUtils;
 import dev.test_jpa.utils.ToString;
 
 /**
@@ -30,10 +31,9 @@ public class Banque {
 	private int id;
 
 	@Column(name = "nom")
-	@ToString(separator = " - Clients: ")
+	@ToString
 	private String nom;
 
-	@ToString
 	@OneToMany(mappedBy = "banque")
 	private Set<Client> clients;
 
@@ -44,6 +44,14 @@ public class Banque {
 	 */
 	public Banque() {
 		clients = new HashSet<Client>();
+	}
+
+	/* METHODS */
+	/**
+	 * Method to return String value of article object
+	 */
+	public String toString() {
+		return StringUtils.getStringValue(this);
 	}
 
 	/* GETTERS AND SETTERS */

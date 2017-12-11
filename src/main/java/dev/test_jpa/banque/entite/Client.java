@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import dev.test_jpa.utils.StringUtils;
 import dev.test_jpa.utils.ToString;
 
 /**
@@ -27,33 +29,55 @@ import dev.test_jpa.utils.ToString;
 public class Client {
 	
 	/* ATTRIBUTES */
+	/**
+	 * the identification
+	 */
 	@ToString(separator = " - Nom: ")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	/**
+	 * The last name
+	 */
 	@Column(name = "nom")
 	@ToString(separator = " - Prénom: ")
 	private String nom;
 	
+	/**
+	 * The first name
+	 */
 	@Column(name = "prenom")
 	@ToString(separator = " - Date de naissance: ")
 	private String prenom;
 	
+	/**
+	 * The birth date
+	 */
 	@Column(name = "dateNaissance")
 	@ToString(separator = " - Adresse: ")
 	private LocalDate dateNaissance;
 	
+	/**
+	 * The client address
+	 */
 	@ToString(separator = " - Banque: ")
 	@Embedded
 	@Column(name = "adresse")
 	Adresse adresse;
 	
+	/**
+	 * The client bank
+	 */
 	@ToString(separator = " - Comptes: ")
 	@ManyToOne
 	@JoinColumn(name = "id_banque")
 	Banque banque;
-		
+	
+	/**
+	 * The client accounts
+	 */
+	@ToString
 	@ManyToMany(mappedBy="clients")
 	private Set<Compte> comptes;
 
@@ -66,6 +90,15 @@ public class Client {
 	public Client() {
 		comptes = new HashSet<Compte>();
 	}
+	
+	/* METHODS */
+	/**
+	 * Method to return String value of article object
+	 */
+	public String toString() {
+		return StringUtils.getStringValue(this);
+	}
+
 	
 	/* GETTERS AND SETTERS */
 

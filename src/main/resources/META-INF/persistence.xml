@@ -20,13 +20,22 @@
 		<class>dev.test_jpa.banque.entite.Banque</class>	
 		<class>dev.test_jpa.banque.entite.Client</class>
 		<class>dev.test_jpa.banque.entite.Compte</class>
-		<class>dev.test_jpa.banque.entite.Operation</class>				
+		<class>dev.test_jpa.banque.entite.Operation</class>
+		<class>dev.test_jpa.banque.entite.LivretA</class>
+		<class>dev.test_jpa.banque.entite.AssuranceVie</class>
+		<class>dev.test_jpa.banque.entite.Virement</class>						
 		<properties>
 			<!--  desactiver l'autodetection des classes de type @Entity -->
 			<property name="hibernate.archive.autodetection" value=""/>
 			
-			<!--  Activation de la génération des classes -->
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<!--  Activation de la génération des tables manquantes uniquement -->
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+			
+			<!--  Drop and Create à chaque redémarrage -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			
+			<!-- Affichage des requêtes sql -->
+			<property name="hibernate.show_sql" value="true" />
 			
 			<!--  Paramètres d'accès à la bdd -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/banque" />
